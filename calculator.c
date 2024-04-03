@@ -1,81 +1,59 @@
 #include <stdio.h>
-float addition(float a, float b);
-float subtraction(float a, float b);
-float multiplication(float a, float b);
-float division(float a, float b);
-void main()
-{
- int a;
- float result;
- do
- {
- printf("1. addition \n2. subtraction \n3. division \n4. multiplication \n5. exit \n");
- printf("Enter your option : ");
- scanf("\n%d",&a);
- 
- float num1,num2;
-  
 
- switch(a)
- {
- 
-     case 1: printf(" Enter First number = ");
-             scanf("%f",&num1);
-             printf("Enter Second number = ");
-             scanf("%f",&num2);
-             
-             result = addition(num1, num2);
-             printf("Result: %.2f\n", result);
-             
-     break;
-     case 2: printf(" Enter First number = ");
-             scanf("%f",&num1);
-             printf("Enter Second number = ");
-             scanf("%f",&num2);
-             
-             result = subtraction(num1, num2);
-             printf("Result: %.2f\n", result);
-     break;
-     case 3: printf(" Enter First number = ");
-             scanf("%f",&num1);
-             printf("Enter Second number = ");
-             scanf("%f",&num2);
-             
-            if (num2 != 0)
-                        {
-                            result = division(num1, num2);
-                        } else 
-                        {
-                            printf("Error: Division by zero!\n");
-                            continue;  
-                        }
-            printf("Result: %.2f\n", result);            
-     break; 
-     case 4: 
-             
-             result = multiplication(num1, num2);
-             printf("Result: %.2f\n", result);
-     break;
-
-     default: printf("exit:\n");
-     
- }
- }while(a!=5);
- 
-}
- 
-float addition(float a, float b) {
-    return a + b;
+// Function to perform addition
+float add(float num1, float num2) {
+    return num1 + num2;
 }
 
-float subtraction(float a, float b) {
-    return a - b;
+// Function to perform subtraction
+float subtract(float num1, float num2) {
+    return num1 - num2;
 }
 
-float multiplication(float a, float b) {
-    return a * b;
+// Function to perform multiplication
+float multiply(float num1, float num2) {
+    return num1 * num2;
 }
 
-float division(float a, float b) {
-    return a / b;
+// Function to perform division
+float divide(float num1, float num2) {
+    if (num2 != 0) {
+        return num1 / num2;
+    } else {
+        printf("Error: Division by zero.\n");
+        return 0;
+    }
+}
+
+int main() {
+    float num1, num2;
+    char operator;
+
+    // Input first number, operator, and second number from the user
+    printf("Enter first number: ");
+    scanf("%f", &num1);
+    printf("Enter operator (+, -, *, /): ");
+    scanf(" %c", &operator);
+    printf("Enter second number: ");
+    scanf("%f", &num2);
+
+    // Perform the operation based on the operator
+    switch (operator) {
+        case '+':
+            printf("%.2f + %.2f = %.2f\n", num1, num2, add(num1, num2));
+            break;
+        case '-':
+            printf("%.2f - %.2f = %.2f\n", num1, num2, subtract(num1, num2));
+            break;
+        case '*':
+            printf("%.2f * %.2f = %.2f\n", num1, num2, multiply(num1, num2));
+            break;
+        case '/':
+            printf("%.2f / %.2f = %.2f\n", num1, num2, divide(num1, num2));
+            break;
+        default:
+            printf("Error: Invalid operator.\n");
+    }
+
+    return 0;
 }
